@@ -52,3 +52,15 @@ Kenapa mongoDB
 1. JSON (BSON)
 2. Javascript
 3. MERN, MEVN, MEAN
+
+perintah data basi di dalam mongoDB
+1. show dbs -> untuk menunjukan databaseyang ada di mongo
+2. use <nama database> -> untuk mengunakan database lama atau membuat database baru 
+3. db.createCollection('<nama_collection>') -> untuk membuat Collection baru
+4. show collections -> untuk menujukan collections yang kita buat 
+5. db.<nama_collection>.insertOne({nama:"fachmi ramadhan", email: "fachmi@gmail.com"}) -> untuk menambahkan data baru db
+6. db.<nama_collection>.insertMany([
+                                {nama:"fachmi ramadhan", email: "fachmi@gmail.com"},
+                                {nama:"danda jaguar", email: "danda@gmail.com"}
+                                ]) -> untuk menambahkan data baru ke db
+7. db.<nama_collection>.find() -> untuk menampilkan semua data di collection
