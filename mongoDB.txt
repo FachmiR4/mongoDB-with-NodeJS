@@ -1,0 +1,54 @@
+mongoDB => berasal dari kata Humongous Database yang artinya besar
+mongoDB adalah sebuah database berbasis documen yang memiliki skalabilitas dan fleksibilitas yang kita inginkan dan juga memiliki fitur query dan indexing yang kita butuhkan
+Database berbasis dokumen => salah satu dari NoSQL Database
+
+
+NoSQL database
+1. 'Not Only' SQL
+2. schemaless / flexible schema
+3. Denormalization
+4. Non-relational Database
+5. unstructured, semi-structured, structured data 
+
+
+tipe NoSQL Database
+1. key-value Store 
+-> redis
+2. Ducument Based
+-> mongoDB, CouchDB
+3. column-oriented Database
+-> HBase, Cassandra 
+4. Graph Database
+-> Neo4j
+
+
+perbedaan sederhana SQL Vs NoSQL
+
+SQL
+-> data berbentuk table
+-> Row/record
+-> column/field
+
+NoSQL 
+-> data berbentuk Collection (Object)
+-> document
+-> field
+
+
+konsep Embedded document (Denormalization)
+[{
+    "Book_id": "2",
+    "isbn":"2321321321",
+    "title": "belajar mongoDB dari no",
+    "author": "fachmi Ramadhan",
+    "publisher":{
+        "publisher_id": "21", 
+        "name": "bangjarwo",
+    }
+}]
+-> publisher itu yang disebut Embedded Ducument karena ada objebct di dalam Object
+
+Kenapa mongoDB 
+1. JSON (BSON)
+2. Javascript
+3. MERN, MEVN, MEAN
