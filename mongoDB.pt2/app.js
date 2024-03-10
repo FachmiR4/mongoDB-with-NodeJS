@@ -1,5 +1,8 @@
 const express = require('express');
 const expressLayout = require('express-ejs-layouts');
+
+const {body, validationResult, check, Result} = require('express-validator')
+
 const session = require('express-session');
 const cookieParser = require('cookie-parser');
 const flash = require('connect-flash');
@@ -68,6 +71,61 @@ app.get('/contact', async function (req, res) {
       msg: req.flash('msg')
     })
 });
+
+// halaman tambah data contact
+app.get('/contact/add', (req, res) => {
+  res.render('add-contact', {
+    title: 'Form Tambah Data Contact',
+    layout: 'layout/main-layout',
+  })
+});
+
+//proses tambah data contact
+app.post('/contact', [
+  body('nama').custom(async (value) => {
+      const duplikat = await Contact.findOne({nama: value});
+      if(duplikat){
+        throw new Error('Nama contact sudah Digunakan');
+      }
+      return true;
+  }),
+  check('email', 'Email tidak valid!').isEmail(),
+  // check('noHp', 'No HP tidak valid!').isMobilePhone('id-ID'),
+], (req, res) => {
+  const errors = validationResult(req);
+  if(!errors.isEmpty()){
+    res.render('add-contact', {
+      title: 'Form Tambah Data Contact',
+      layout: 'layout/main-layout',
+      errors: errors.array()
+    })
+  }else{
+     Contact.insertMany(req.body, (err, result) => {
+        //  kirimkan flash message
+        req.flash('msg', 'Data contact berhasil ditambahkan!')
+        //mengarahkan file ke file ke yang lain
+        res.redirect('/contact');
+     });
+  }
+
+});
+// // menghapus data
+// app.get('/contact/delete/:nama', async (req, res) => {
+//   const contact = await Contact.findOne({nama: req.params.nama});
+//   // jika contact tidak ada 
+//    if(!contact){
+//     res.status(404);
+//     res.send('<h1>404</h1>')
+//   }else{
+//       Contact.deleteOne({_id: contact._id}).then(result => {
+//         req.flash('msg', 'Data contact berhasil dihapus!')
+//         res.redirect('/contact');
+//       });
+//   }
+ 
+// })
+
+app.delete('contact',)
 
 // halaman detail contact
 app.get('/contact/:nama', async function (req, res) {
