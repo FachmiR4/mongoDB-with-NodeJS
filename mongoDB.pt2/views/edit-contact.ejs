@@ -11,7 +11,8 @@
                 </ul>
               </div>
             <% } %>
-            <form method="POST" action="/contact/update">
+            <form method="POST" action="/contact?_method=PUT">
+                <input type="hidden" name="_id" value="<%= contact._id %>">
                 <input type="hidden" nama="oldNama" value="<%= (contact.oldNama) ? contact.oldNama : contact.nama %>">
                     <div class="mb-3">
                     <label for="nama" class="form-label">Nama Lengkap</label>
@@ -22,8 +23,8 @@
                     <input type="email" class="form-control" id="email" name="email" required value="<%= contact.email %>">
                     </div>
                     <div class="mb-3">
-                        <label for="noHP" class="form-label">No Hp</label>
-                        <input type="text" class="form-control" id="noHP" name="noHP" required value="<%= contact.noHP %>">
+                        <label for="noHp" class="form-label">No Hp</label>
+                        <input type="text" class="form-control" id="noHp" name="noHp" required value="<%= contact.noHp %>">
                     </div>
                     <button type="submit" class="btn btn-primary">Tambah Data Contact</button>
             </form>
